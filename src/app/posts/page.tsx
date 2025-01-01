@@ -5,35 +5,34 @@ import BlogPostCard from '../../components/BlogPostCard'
 import { Post } from '../../types/post'
 import { Input } from "@nextui-org/react"
 import { SearchIcon } from '../../components/icons/SearchIcon'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Pagination } from "@nextui-org/pagination";
 
 export default function Posts() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [posts, setPosts] = useState<Post[]>([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const pageSize = 10
 
-  const posts: Post[] = [
-    {
-      id: "1111",
-      title: "Getting Started with Next.js",
-      description: "An introduction to building modern web applications with Next.js. Learn about the key features and benefits of using Next.js for your projects.",
-      date: "January 1, 2025",
-      readTime: "5"
-    },
-    {
-      id: "2222",
-      title: "The Power of TypeScript",
-      description: "Why TypeScript is becoming the standard for modern web development. Explore the benefits of static typing and how it can improve your code quality.",
-      date: "January 1, 2025",
-      readTime: "4"
-    },
-    {
-      id: "3333",
-      title: "Modern CSS Techniques",
-      description: "Exploring the latest CSS features and techniques that are transforming web design. From Grid to Custom Properties, learn how to write better CSS.",
-      date: "January 1, 2025",
-      readTime: "6"
+  const fetchPosts = async (page: number, query: string) => {
+    try {
+      const response = await fetch(`/api/posts?page=${page}&pageSize=${pageSize}&query=${query}`)
+      const data = await response.json()
+      setPosts(data.posts)
+      setTotalPages(data.pagination.totalPages)
+    } catch (error) {
+      console.error('Error fetching posts:', error)
     }
-  ]
+  }
+
+  useEffect(() => {
+    fetchPosts(currentPage, searchQuery)
+  }, [currentPage, searchQuery])
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+  }
 
   const filteredPosts = posts.filter(post => 
     post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -106,11 +105,12 @@ export default function Posts() {
           <div className="mt-12 flex justify-center">
             <Pagination 
               color="primary" 
-              initialPage={3} 
-              total={10}
+              initialPage={currentPage} 
+              total={totalPages}
               size="lg"
               className="gap-2"
               showControls
+              onChange={handlePageChange}
             />
           </div>
         </div>

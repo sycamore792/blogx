@@ -1,26 +1,28 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import BlogPostCard from '../components/BlogPostCard'
 import { Post } from '../types/post'
+import { useEffect, useState } from "react";
 
 export default function Home() {
-   const posts: Post[] = [
-    {
-      id: "3333",
-      title: "Modern CSS Techniques",
-      description: "Exploring the latest CSS features and techniques that are transforming web design. From Grid to Custom Properties, learn how to write better CSS.",
-      date: "January 1, 2025",
-      readTime: "6"
-    },
-    {
-      id: "2222",
-      title: "The Power of TypeScript",
-      description: "Why TypeScript is becoming the standard for modern web development...",
-      date: "January 1, 2025",
-      readTime: "4"
+  const [posts, setPosts] = useState<Post[]>([])
+
+  useEffect(() => {
+    const fetchLatestPosts = async () => {
+      try {
+        const response = await fetch('/api/latest-posts')
+        const data = await response.json()
+        setPosts(data.posts)
+      } catch (error) {
+        console.error('Error fetching latest posts:', error)
+      }
     }
-  ]
-  
+
+    fetchLatestPosts()
+  }, [])
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header Section */}
