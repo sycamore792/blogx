@@ -6,7 +6,7 @@ import { Post } from '../../types/post'
 import { Input } from "@nextui-org/react"
 import { SearchIcon } from '../../components/icons/SearchIcon'
 import { useState } from 'react'
-import { Pagination, PaginationItem, PaginationCursor} from "@nextui-org/pagination";
+import { Pagination } from "@nextui-org/pagination";
 
 export default function Posts() {
   const [searchQuery, setSearchQuery] = useState('')

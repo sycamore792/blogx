@@ -66,7 +66,7 @@ export default function Home() {
             
             <div className="space-y-4 text-gray-600">
               <p className="leading-relaxed">
-                Hey there! 👋 I'm a passionate developer who loves building things that live on the internet. 
+                Hey there! 👋 I&apos;m a passionate developer who loves building things that live on the internet. 
                 With a deep appreciation for clean code and user-centric design, I enjoy crafting digital experiences 
                 that make a difference.
               </p>
@@ -93,7 +93,7 @@ export default function Home() {
               <div className="py-3">
                 <h3 className="text-lg font-medium text-gray-800 mb-2"> Beyond Coding</h3>
                 <p className="leading-relaxed">
-                  When I'm not coding, you'll find me exploring photography, writing technical blogs, 
+                  When I&apos;m not coding, you&apos;ll find me exploring photography, writing technical blogs, 
                   and contributing to open-source projects. I believe in the power of community and 
                   continuous learning.
                 </p>
