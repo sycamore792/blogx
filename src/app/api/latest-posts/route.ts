@@ -9,8 +9,7 @@ const posts: Post[] = [
     description: "An introduction to building modern web applications with Next.js. Learn about the key features and benefits of using Next.js for your projects.",
     date: "January 1, 2025",
     viewCount: 5000,
-    content: `
-    `
+   
   },
   {
     id: "2",
@@ -18,8 +17,7 @@ const posts: Post[] = [
     description: "Why TypeScript is becoming the standard for modern web development. Explore the benefits of static typing and how it can improve your code quality.",
     date: "January 1, 2025",
     viewCount: 5000,
-    content: `
-    `
+   
   },
   {
     id: "3",
@@ -27,8 +25,7 @@ const posts: Post[] = [
     description: "Exploring the latest CSS features and techniques that are transforming web design. From Grid to Custom Properties, learn how to write better CSS.",
     date: "January 1, 2025",
     viewCount: 5000,
-    content: `
-    `
+   
   }
 ]
 

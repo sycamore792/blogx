@@ -5,7 +5,7 @@ export interface Post {
   date: string
   // readTime: string,
   viewCount: number,
-  coverImage?: string,
-  content: string 
+  coverImage?: string   , 
+  content?: string 
 }
 
