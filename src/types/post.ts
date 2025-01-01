@@ -3,6 +3,9 @@ export interface Post {
   title: string
   description: string
   date: string
-  readTime: string
+  // readTime: string,
+  viewCount: number,
+  coverImage?: string,
+  content: string
 }
 

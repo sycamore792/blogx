@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import BlogPostCard from '../components/BlogPostCard'
+import SmallBlogPostCard from '../components/SmallBlogPostCard'
 import { Post } from '../types/post'
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([])
+  const [posts, setPosts] = useState<Post[]>([]) 
 
   useEffect(() => {
     const fetchLatestPosts = async () => {
@@ -149,7 +149,7 @@ export default function Home() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {posts.map(post => (
-              <BlogPostCard key={post.id} {...post} />
+              <SmallBlogPostCard key={post.id} {...post} />
             ))}
           </div>
         </section>
