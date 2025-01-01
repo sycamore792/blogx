@@ -1,6 +1,45 @@
+'use client';
+
 import Link from 'next/link'
+import BlogPostCard from '../../components/BlogPostCard'
+import { Post } from '../../types/post'
+import { Input } from "@nextui-org/react"
+import { SearchIcon } from '../../components/icons/SearchIcon'
+import { useState } from 'react'
+import { Pagination, PaginationItem, PaginationCursor} from "@nextui-org/pagination";
 
 export default function Posts() {
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const posts: Post[] = [
+    {
+      id: "1111",
+      title: "Getting Started with Next.js",
+      description: "An introduction to building modern web applications with Next.js. Learn about the key features and benefits of using Next.js for your projects.",
+      date: "January 1, 2025",
+      readTime: "5"
+    },
+    {
+      id: "2222",
+      title: "The Power of TypeScript",
+      description: "Why TypeScript is becoming the standard for modern web development. Explore the benefits of static typing and how it can improve your code quality.",
+      date: "January 1, 2025",
+      readTime: "4"
+    },
+    {
+      id: "3333",
+      title: "Modern CSS Techniques",
+      description: "Exploring the latest CSS features and techniques that are transforming web design. From Grid to Custom Properties, learn how to write better CSS.",
+      date: "January 1, 2025",
+      readTime: "6"
+    }
+  ]
+
+  const filteredPosts = posts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.description.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
   return (
     <div className="min-h-screen bg-white">
       <main className="container mx-auto px-4 py-16">
@@ -25,88 +64,54 @@ export default function Posts() {
             </svg>
             Back to Home
           </Link>
-          <h1 className="text-4xl font-light text-gray-800 mb-4">
-            All Posts
-          </h1>
-          <p className="text-gray-500 font-light">
-            Thoughts, stories and ideas.
-          </p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            <div>
+              <h1 className="text-4xl font-light text-gray-800 mb-2">
+                All Posts
+              </h1>
+              <p className="text-gray-500 font-light">
+                Thoughts, stories and ideas.
+              </p>
+            </div>
+            <Input
+              classNames={{
+                base: "max-w-full sm:max-w-[24rem] h-10",
+                mainWrapper: "h-full",
+                input: "text-small",
+                inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+              }}
+              placeholder="Search posts..."
+              size="sm"
+              startContent={<SearchIcon size={18} />}
+              type="search"
+              value={searchQuery}
+              onValueChange={setSearchQuery}
+            />
+          </div>
         </div>
 
         {/* Posts Grid */}
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
-            {/* Post Item */}
-            <article className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <Link href="/posts/1111" className="block p-6">
-                <h2 className="text-2xl text-gray-800 font-light mb-2">
-                  Getting Started with Next.js
-                </h2>
-                <p className="text-gray-500 font-light mb-4">
-                  An introduction to building modern web applications with Next.js. Learn about the key features and benefits of using Next.js for your projects.
-                </p>
-                <div className="flex items-center text-sm text-gray-400">
-                  <span>January 1, 2025</span>
-                  <span className="mx-2">•</span>
-                  <span>5 min read</span>
-                </div>
-              </Link>
-            </article>
-
-            <article className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <Link href="/posts/2222" className="block p-6">
-                <h2 className="text-2xl text-gray-800 font-light mb-2">
-                  The Power of TypeScript
-                </h2>
-                <p className="text-gray-500 font-light mb-4">
-                  Why TypeScript is becoming the standard for modern web development. Explore the benefits of static typing and how it can improve your code quality.
-                </p>
-                <div className="flex items-center text-sm text-gray-400">
-                  <span>January 1, 2025</span>
-                  <span className="mx-2">•</span>
-                  <span>4 min read</span>
-                </div>
-              </Link>
-            </article>
-
-            <article className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <Link href="/posts/3333" className="block p-6">
-                <h2 className="text-2xl text-gray-800 font-light mb-2">
-                  Modern CSS Techniques
-                </h2>
-                <p className="text-gray-500 font-light mb-4">
-                  Exploring the latest CSS features and techniques that are transforming web design. From Grid to Custom Properties, learn how to write better CSS.
-                </p>
-                <div className="flex items-center text-sm text-gray-400">
-                  <span>January 1, 2025</span>
-                  <span className="mx-2">•</span>
-                  <span>6 min read</span>
-                </div>
-              </Link>
-            </article>
+            {filteredPosts.map(post => (
+              <BlogPostCard key={post.id} {...post} />
+            ))}
+            {filteredPosts.length === 0 && (
+              <p className="text-center text-gray-500 py-8">
+                No posts found matching your search.
+              </p>
+            )}
           </div>
 
-          {/* Pagination - Optional */}
           <div className="mt-12 flex justify-center">
-            <nav className="flex items-center gap-2">
-              <button className="px-4 py-2 border border-gray-100 rounded text-gray-400 cursor-not-allowed">
-                Previous
-              </button>
-              <div className="flex items-center gap-1">
-                <span className="px-4 py-2 bg-gray-50 border border-gray-100 rounded text-gray-800">
-                  1
-                </span>
-                <span className="px-4 py-2 hover:bg-gray-50 border border-gray-100 rounded text-gray-500">
-                  2
-                </span>
-                <span className="px-4 py-2 hover:bg-gray-50 border border-gray-100 rounded text-gray-500">
-                  3
-                </span>
-              </div>
-              <button className="px-4 py-2 border border-gray-100 rounded text-gray-500 hover:bg-gray-50">
-                Next
-              </button>
-            </nav>
+            <Pagination 
+              color="primary" 
+              initialPage={3} 
+              total={10}
+              size="lg"
+              className="gap-2"
+              showControls
+            />
           </div>
         </div>
       </main>
