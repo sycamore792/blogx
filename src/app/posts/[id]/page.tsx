@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
-import { Post } from '@/types/post'
 import { PostContent } from '@/components/PostContent'
 import { posts } from '@/data/posts'
 import '@/styles/markdown.css'
