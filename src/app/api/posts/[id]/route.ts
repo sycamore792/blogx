@@ -6,24 +6,21 @@ import { Post } from '@/types/post'
 const posts = [
   {
     id: "1",
-    title: "Getting Started with Next.js",
-    description: "An introduction to building modern web applications with Next.js. Learn about the key features and benefits of using Next.js for your projects.",
-    date: "January 1, 2025",
-    viewCount: 5000,
+    title: "Getting Started with Next.js 14",
+    description: "Learn how to build modern web applications with Next.js 14",
+    date: "2024-01-02",
+    viewCount: 1234,
     content: `
-# Getting Started with Next.js
+# Getting Started with Next.js 14
 
-Next.js is a powerful React framework that makes building web applications a breeze. In this post, we'll explore the key features that make Next.js stand out.
+Next.js is a powerful framework for building React applications. In this post, we'll explore its key features and how to get started.
 
-## Why Next.js?
+## Key Features
 
-Next.js provides an excellent developer experience with features like:
-
-- Server-side rendering
-- Static site generation
-- API routes
-- File-system based routing
-- Built-in CSS and Sass support
+1. Server Components
+2. File-based Routing
+3. API Routes
+4. Server-side Rendering
 
 ## Getting Started
 
@@ -33,30 +30,9 @@ First, create a new Next.js project:
 npx create-next-app@latest my-app
 \`\`\`
 
-Then, run the development server:
-
-\`\`\`bash
-cd my-app
-npm run dev
-\`\`\`
-
-## Key Features
-
-### 1. File-System Based Routing
-
-Next.js uses the file system for routing. Simply create a file in the pages directory, and it becomes a route.
-
-### 2. API Routes
-
-Create API endpoints by adding files to the \`pages/api\` directory.
-
-### 3. Built-in CSS Support
-
-Next.js has built-in support for CSS and CSS Modules.
-
 ## Conclusion
 
-Next.js is an excellent choice for building modern web applications. Its features and developer experience make it a top choice for React developers.
+Next.js 14 brings significant improvements to the developer experience and application performance.
     `
   },
   {
@@ -121,9 +97,9 @@ TypeScript is an invaluable tool for modern web development, providing better to
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = await params
+  const { id } = await context.params
   const post = posts.find(p => p.id === id)
   
   if (!post) {
