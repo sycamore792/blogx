@@ -6,6 +6,6 @@ export interface Post {
   // readTime: string,
   viewCount: number,
   coverImage?: string,
-  content: string
+  content: string 
 }
 
