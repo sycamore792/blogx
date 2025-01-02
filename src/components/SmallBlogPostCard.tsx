@@ -14,7 +14,7 @@ interface BlogPostCardProps {
 
 export default function SmallBlogPostCard({ id, title, description, date, viewCount }: BlogPostCardProps) {
   return (
-    <Card isFooterBlurred className="border-none h-[300px] relative group" radius="lg">
+    <Card isFooterBlurred className="border-none min-h-[300px] relative group" radius="lg">
       <Image
        
         alt={title}
@@ -32,7 +32,7 @@ export default function SmallBlogPostCard({ id, title, description, date, viewCo
           </p>
         </div>
       </div>
-      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-3 absolute before:rounded-xl rounded-large bottom-5 min-w-[280px] w-[60%] max-w-[380px] left-1/2 -translate-x-1/2 shadow-small z-30">
+      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-3 absolute before:rounded-xl rounded-large bottom-5 w-[90%] sm:w-[60%] max-w-[380px] left-1/2 -translate-x-1/2 shadow-small z-30">
         <div className="flex items-center text-tiny text-white/60">
           <span>{date}</span>
           <span className="mx-2">•</span>
