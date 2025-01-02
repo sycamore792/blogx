@@ -44,16 +44,16 @@ export default function SmallBlogPostCard({ id, title, description, date, viewCo
             </svg>
           </div>
         </div>
-        <NextLink href={`/posts/${id}`}>
-          <Button
-            className="text-tiny text-white bg-black/20"
-            radius="lg"
-            size="sm"
-            variant="flat"
-          >
-            Read More
-          </Button>
-        </NextLink>
+        <Button
+          as={NextLink}
+          href={`/posts/${id}`}
+          className="text-tiny text-white bg-black/20"
+          radius="lg"
+          size="sm"
+          variant="flat"
+        >
+          Read More
+        </Button>
       </CardFooter>
     </Card>
   )

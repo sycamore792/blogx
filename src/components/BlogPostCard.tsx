@@ -44,8 +44,8 @@ export default function BlogPostCard({ id, title, description, date, viewCount }
 
         <CardFooter className="justify-between border-t border-gray-100 overflow-hidden py-3 absolute bottom-0 left-0 right-0">
           <div className="flex items-center gap-2 text-tiny text-gray-400">
-            <span className="hidden md:inline">{date}</span>
-            <span className="hidden md:inline">•</span>
+            <span className=" md:inline">{date}</span>
+            <span className=" md:inline">•</span>
             <div className="flex items-center gap-1">
               <span>{formatNumber(viewCount)}</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
@@ -54,15 +54,15 @@ export default function BlogPostCard({ id, title, description, date, viewCount }
               </svg>
             </div>
           </div>
-          <NextLink href={`/posts/${id}`}>
-            <Button
-              className="text-tiny text-gray-700 bg-gray-100 hover:bg-gray-200"
-              radius="lg"
-              size="sm"
-            >
-              Read More
-            </Button>
-          </NextLink>
+          <Button
+            as={NextLink}
+            href={`/posts/${id}`}
+            className="text-tiny text-gray-700 bg-gray-100 hover:bg-gray-200 min-w-[80px]"
+            radius="lg"
+            size="sm"
+          >
+            Read More
+          </Button>
         </CardFooter>
       </div>
     </Card>
